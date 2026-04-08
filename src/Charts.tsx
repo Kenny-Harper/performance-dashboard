@@ -4,12 +4,11 @@ import {
   ResponsiveContainer, CartesianGrid
 } from 'recharts';
 
-// Charts component — renders live line charts for CPU, memory and throughput
 function Charts({ cpu, memory, throughput }: ChartsProps) {
 
-  // format timestamp to just show seconds for the X axis label
-  // e.g. 1712345678000 becomes "12:34:56"
-  function formatTime(timestamp: number): string {
+  // format timestamp for X axis display
+  function formatTime(timestamp: unknown): string {
+    if (typeof timestamp !== 'number') return '';
     return new Date(timestamp).toLocaleTimeString('en-GB', {
       hour: '2-digit',
       minute: '2-digit',
@@ -17,10 +16,15 @@ function Charts({ cpu, memory, throughput }: ChartsProps) {
     });
   }
 
+  // format tooltip value
+  function formatValue(value: unknown, unit: string): string {
+    if (typeof value !== 'number') return '';
+    return `${value} ${unit}`;
+  }
+
   return (
     <div className="charts-grid">
 
-      {/* CPU chart */}
       <div className="chart-card">
         <h3>CPU Usage <span className="chart-unit">%</span></h3>
         <ResponsiveContainer width="100%" height={180}>
@@ -30,7 +34,7 @@ function Charts({ cpu, memory, throughput }: ChartsProps) {
             <YAxis domain={[0, 100]} stroke="#64748b" tick={{ fontSize: 10 }} />
             <Tooltip
               labelFormatter={formatTime}
-              formatter={(value: number) => [`${value}%`, 'CPU']}
+              formatter={(value: unknown) => [formatValue(value, '%'), 'CPU']}
               contentStyle={{ background: '#0d1221', border: '1px solid #1e2d4a' }}
             />
             <Line type="monotone" dataKey="value" stroke="#3b82f6" dot={false} strokeWidth={2} />
@@ -38,7 +42,6 @@ function Charts({ cpu, memory, throughput }: ChartsProps) {
         </ResponsiveContainer>
       </div>
 
-      {/* Memory chart */}
       <div className="chart-card">
         <h3>Memory Usage <span className="chart-unit">%</span></h3>
         <ResponsiveContainer width="100%" height={180}>
@@ -48,7 +51,7 @@ function Charts({ cpu, memory, throughput }: ChartsProps) {
             <YAxis domain={[0, 100]} stroke="#64748b" tick={{ fontSize: 10 }} />
             <Tooltip
               labelFormatter={formatTime}
-              formatter={(value: number) => [`${value}%`, 'Memory']}
+              formatter={(value: unknown) => [formatValue(value, '%'), 'Memory']}
               contentStyle={{ background: '#0d1221', border: '1px solid #1e2d4a' }}
             />
             <Line type="monotone" dataKey="value" stroke="#a855f7" dot={false} strokeWidth={2} />
@@ -56,7 +59,6 @@ function Charts({ cpu, memory, throughput }: ChartsProps) {
         </ResponsiveContainer>
       </div>
 
-      {/* Throughput chart */}
       <div className="chart-card">
         <h3>Throughput <span className="chart-unit">TFLOPS</span></h3>
         <ResponsiveContainer width="100%" height={180}>
@@ -66,7 +68,7 @@ function Charts({ cpu, memory, throughput }: ChartsProps) {
             <YAxis domain={[80, 180]} stroke="#64748b" tick={{ fontSize: 10 }} />
             <Tooltip
               labelFormatter={formatTime}
-              formatter={(value: number) => [`${value} TFLOPS`, 'Throughput']}
+              formatter={(value: unknown) => [formatValue(value, 'TFLOPS'), 'Throughput']}
               contentStyle={{ background: '#0d1221', border: '1px solid #1e2d4a' }}
             />
             <Line type="monotone" dataKey="value" stroke="#22c55e" dot={false} strokeWidth={2} />
