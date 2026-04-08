@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+# ⚡ IPU Performance Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time hardware performance monitoring dashboard built with React, TypeScript and Vite. Inspired by the kind of profiling tools used in AI hardware companies like Graphcore.
 
-Currently, two official plugins are available:
+## Live Demo
+🔗 [Add Netlify link here after deployment]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- Live updating metrics every second — CPU usage, memory and throughput
+- Three real-time line charts with timestamp X axis
+- IPU Core Status grid showing active, idle and overloaded cores
+- Time range filter — view last 10s, 30s or 60s of data
+- Pause and resume live data updates
+- Colour coded status indicators based on performance thresholds
+- Simulated realistic data with gradual fluctuation
 
-## React Compiler
+## Tech Stack
+- React
+- TypeScript
+- Vite
+- Recharts (data visualisation)
+- CSS (custom dark theme)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## TypeScript Concepts Used
+- Interfaces — defining the shape of all metric data
+- Union types — e.g. status can only be 'active' | 'idle' | 'overloaded'
+- Type annotations on function parameters and return types
+- import type — type-only imports for performance
+- ReturnType utility type
 
-## Expanding the ESLint configuration
+## React Concepts Used
+- useReducer for centralised state management
+- useEffect with setInterval for live data updates
+- useMemo for filtered metric calculations
+- Props with TypeScript typed interfaces
+- Conditional rendering based on metric thresholds
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Architecture
+The app is split into focused components:
+- App.tsx — root component, holds all state and the live data interval
+- MetricCard.tsx — displays a single metric summary card
+- Charts.tsx — three live line charts using Recharts
+- CoreGrid.tsx — IPU core status display
+- dataGenerator.ts — simulates realistic hardware metrics
+- types.ts — all TypeScript interfaces and types in one place
