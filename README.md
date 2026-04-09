@@ -3,7 +3,7 @@
 A real-time hardware performance monitoring dashboard built with React, TypeScript and Vite. Inspired by the kind of profiling tools used in AI hardware companies like Graphcore.
 
 ## Live Demo
-🔗 https://kenny-harper-ipu-dashboard.netlify.app
+https://kenny-harper-ipu-dashboard.netlify.app
 
 ## Features
 - Live updating metrics every second — CPU usage, memory and throughput
