@@ -1,6 +1,6 @@
 # ⚡ IPU Performance Dashboard
 
-<img width="833" height="790" alt="Screenshot 2026-04-28 at 11 10 12" src="https://github.com/user-attachments/assets/a2faeef0-28d6-4e09-8040-f1f34f6db130" />
+<img width="825" height="790" alt="Screenshot 2026-04-28 at 11 11 25" src="https://github.com/user-attachments/assets/f65f7c5f-132d-409a-b67b-c0421425c58e" />
 
 ## Live Demo
 https://kenny-harper-ipu-dashboard.netlify.app
