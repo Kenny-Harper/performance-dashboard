@@ -1,9 +1,13 @@
 # ⚡ IPU Performance Dashboard
 
-A real-time hardware performance monitoring dashboard built with React, TypeScript and Vite. Inspired by the kind of profiling tools used in AI hardware companies like Graphcore.
+<img width="833" height="790" alt="Screenshot 2026-04-28 at 11 10 12" src="https://github.com/user-attachments/assets/a2faeef0-28d6-4e09-8040-f1f34f6db130" />
 
 ## Live Demo
 https://kenny-harper-ipu-dashboard.netlify.app
+
+## Intro
+A real-time hardware performance monitoring dashboard built with React, TypeScript and Vite. Inspired by the kind of profiling tools used in AI hardware companies like Graphcore.
+
 
 ## Features
 - Live updating metrics every second — CPU usage, memory and throughput
